@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg-primary: #090d16;
+    --color-bg-secondary: #0f172a;
+    --color-border: #1e293b;
+    --color-accent-green: #10b981;
+    --color-accent-gold: #f59e0b;
+  }
+
+  body {
+    background-color: #0b1120;
+    color: #f1f5f9;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Custom high-tech scrollbars */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0b1120;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #10b981;
+  }
+}
+
+/* Glassmorphic panels */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(51, 65, 85, 0.45);
+}
+
+.glass-panel-elevated {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(71, 85, 105, 0.5);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.glass-panel-glow {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.15);
+}
+
+/* Radar scan animation for pathology scanner */
+@keyframes scanline {
+  0% {
+    top: 0%;
+  }
+  50% {
+    top: 96%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+
+.animate-scanline {
+  animation: scanline 2.5s ease-in-out infinite;
+}
+
+/* Pulse glow animation */
+@keyframes agri-pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+.animate-agri-pulse {
+  animation: agri-pulse 4s infinite ease-in-out;
+}
+
+/* Print Styles for PDF Export */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .glass-panel, .glass-panel-elevated {
+    background: #ffffff !important;
+    border: 1px solid #cccccc !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+  }
+  .text-white, .text-slate-100, .text-slate-200, .text-slate-300 {
+    color: #111827 !important;
+  }
+  .text-slate-400, .text-slate-500 {
+    color: #4b5563 !important;
+  }
+  .bg-slate-900, .bg-slate-950, .bg-slate-800 {
+    background-color: #f9fafb !important;
+  }
+}

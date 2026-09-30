@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>SINGLE-USE DATA TRANSFORMATION GATEWAY [STRICT ENFORCEMENT]</title>
+    <style>
+        /* RAW HOSTILE CSS - UNPOLISHED & IRRITATING ESTHETIC */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            -webkit-user-select: text;
+            user-select: text;
+        }
+
+        /* 3PX ALMOST INVISIBLE SCROLLBAR TO MAKE MANUAL SCROLLING PAINFUL */
+        ::-webkit-scrollbar {
+            width: 3px;
+            height: 3px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff0055;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #39ff14;
+        }
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: #ff0055 #000000;
+            background-color: #000000;
+            color: #39ff14;
+        }
+
+        body {
+            background-color: #000000;
+            color: #39ff14;
+            min-height: 100vh;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        /* MISMATCHED JARRING BORDERS */
+        .gateway-container {
+            width: 100%;
+            max-width: 820px;
+            background-color: #030802;
+            border-top: 4px dashed #ff0055;
+            border-right: 8px solid #39ff14;
+            border-bottom: 6px double #00ffff;
+            border-left: 5px dotted #ffff00;
+            padding: 22px;
+            margin-top: 10px;
+            box-shadow: 12px 12px 0px #220011, -8px -8px 0px #002211;
+        }
+
+        .hostile-banner {
+            background-color: #ff0055;
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 11px;
+            padding: 6px 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 18px;
+            border: 2px solid #ffff00;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .title-block {
+            border-bottom: 2px dashed #ff0055;
+            padding-bottom: 12px;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            color: #ffff00;
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            text-shadow: 2px 2px 0px #ff0055;
+        }
+
+        .security-warning-card {
+            background-color: #1a0007;
+            border: 2px solid #ff2222;
+            color: #ff99aa;
+            padding: 12px;
+            font-size: 11px;
+            line-height: 1.4;
+            margin-bottom: 18px;
+        }
+
+        .security-warning-card strong {
+            color: #ff2222;
+            text-transform: uppercase;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: 900;
+            color: #00ffff;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .sub-label {
+            display: block;
+            font-size: 10px;
+            color: #ff2222;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        select {
+            width: 100%;
+            background-color: #000000;
+            color: #ffff00;
+            border: 2px solid #39ff14;
+            padding: 8px 10px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 16px;
+            border-radius: 0;
+            outline: none;
+            cursor: pointer;
+        }
+
+        textarea {
+            width: 100%;
+            height: 130px;
+            background-color: #000000;
+            color: #39ff14;
+            border: 3px solid #ff0055;
+            padding: 12px;
+            font-size: 13px;
+            line-height: 1.4;
+            resize: none;
+            outline: none;
+            margin-bottom: 16px;
+            box-shadow: inset 4px 4px 0px #1a0007;
+        }
+
+        textarea:focus {
+            border-color: #ffff00;
+            background-color: #020601;
+        }
+
+        /* BUTTON LAYOUT WITH ACCIDENTAL RESET TRAP */
+        .action-cluster {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 10px;
+            padding-top: 16px;
+            border-top: 2px dotted #39ff14;
+        }
+
+        /* DECEPTIVE BRIGHT PRIMARY TRAP BUTTON */
+        .primary-trap-btn {
+            background: linear-gradient(135deg, #39ff14 0%, #00ffff 100%);
+            color: #000000;
+            font-size: 14px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 18px 24px;
+            border: 4px solid #ffffff;
+            box-shadow: 0px 0px 20px #39ff14, 6px 6px 0px #ff0055;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            transition: transform 0.05s ease-in-out;
+        }
+
+        .primary-trap-btn:hover {
+            transform: scale(1.02);
+            background: linear-gradient(135deg, #00ffff 0%, #39ff14 100%);
+        }
+
+        /* REAL FUNCTIONAL BUTTON (LOOKS BROKEN, FAINT, DISGUISED) */
+        .real-btn-container {
+            display: flex;
+            justify-content: center;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .real-functional-btn {
+            background-color: #0a0a0a;
+            color: #555555;
+            border: 1px dashed #333333;
+            font-size: 10px;
+            padding: 6px 14px;
+            cursor: pointer;
+            text-decoration: none;
+            opacity: 0.65;
+            transition: transform 0.1s ease;
+            position: relative;
+            user-select: none;
+        }
+
+        .real-functional-btn:hover {
+            color: #888888;
+            border-color: #555555;
+            opacity: 0.9;
+        }
+
+        /* FULLSCREEN MODAL DELAY SPINNER (5 SECONDS) */
+        #loading-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.97);
+            z-index: 999999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 24px;
+            user-select: none;
+        }
+
+        .spinner-ring {
+            width: 68px;
+            height: 68px;
+            border: 6px solid #111111;
+            border-top: 6px solid #ff0055;
+            border-right: 6px solid #39ff14;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            margin-bottom: 24px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .modal-warning-title {
+            color: #ff2222;
+            font-size: 15px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .modal-status-text {
+            color: #ffff00;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            min-height: 20px;
+        }
+
+        .modal-progress-track {
+            width: 280px;
+            height: 12px;
+            background-color: #111111;
+            border: 2px solid #39ff14;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-progress-fill {
+            height: 100%;
+            width: 0%;
+            background-color: #ff0055;
+            transition: width 0.3s ease;
+        }
+
+        .footer-metrics {
+            margin-top: 24px;
+            font-size: 9px;
+            color: #444444;
+            text-align: center;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="gateway-container">
+        <!-- TOP BREADCRUMB HOSTILE BANNER -->
+        <div class="hostile-banner">
+            <span>[SECURITY NODE: 0x992B]</span>
+            <span>SINGLE-USE TRANSACTION GATEWAY</span>
+            <span>IP LOGGED</span>
+        </div>
+
+        <!-- HEADER -->
+        <div class="title-block">
+            <h1>STRICT ENCRYPTION & DATA SANITIZER</h1>
+            <p style="font-size: 11px; color: #888888;">
+                AUTHORIZATION LEVEL: ONE-TIME VOLATILE ALLOCATION. STATE RETENTION PERMANENTLY INHIBITED.
+            </p>
+        </div>
+
+        <!-- HIGH ANXIETY LEGAL WARNING CARD -->
+        <div class="security-warning-card">
+            <strong>CRITICAL REPOSITORY PROTOCOL [NO RETENTION GUARANTEE]:</strong><br>
+            Leaving this viewport, toggling active application focus, pressing system backspace excessively, or attempting background caching invokes an immediate cryptographic zero-fill. Progress cannot be saved, restored, or audited.
+        </div>
+
+        <!-- THE FORM -->
+        <form id="hostile-form" onsubmit="return false;" autocomplete="off">
+            <!-- TRANSFORMATION ALGORITHM -->
+            <label for="transform-algorithm">Transformation Algorithm Selection:</label>
+            <select id="transform-algorithm">
+                <option value="rot13">ALGO-01: ROT-13 Cryptographic Offset</option>
+                <option value="binary">ALGO-02: 8-Bit Binary ASCII Encoding</option>
+                <option value="base64">ALGO-03: RFC-4648 Base64 Stream Encoding</option>
+                <option value="inverse">ALGO-04: InVeRsE CaSe Alternating Sanitization</option>
+                <option value="reverse">ALGO-05: Strict Sequence Reversion (Reverse)</option>
+                <option value="strip">ALGO-06: Destructive Delimiter & Control Strip</option>
+            </select>
+
+            <!-- INPUT TEXTAREA -->
+            <label for="payload-input">Input String Payload:</label>
+            <span class="sub-label">WARNING: LEAVING THIS PAGE DELETES YOUR PROGRESS FOREVER. DO NOT ATTEMPT TO RELOAD.</span>
+            <textarea
+                id="payload-input"
+                name="payload_volatile_field_null"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+                placeholder="[REQUIRED]: Input string payload here. All input resides exclusively in volatile RAM. Moving window focus triggers self-destruction."
+            ></textarea>
+
+            <!-- HOSTILE ACTION BUTTON CLUSTER -->
+            <div class="action-cluster">
+                <!-- ACCIDENTAL RESET TRAP (PRIMARY DECEPTIVE BUTTON) -->
+                <button type="button" id="fake-trap-btn" class="primary-trap-btn">
+                    ► CONVERT & PROCESS STRING (PRIMARY ACTION) ◄
+                </button>
+
+                <!-- REAL FUNCTIONAL BUTTON (DISGUISED, DODGES MOUSE) -->
+                <div class="real-btn-container">
+                    <button type="button" id="real-exec-btn" class="real-functional-btn">
+                        [-- execute irreversible transformation sequence [secondary/deprecated] --]
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <div class="footer-metrics">
+            TERMINAL SESSION ID: SEC-88091-REV-4 • ENFORCING HOSTILE INTERACTION DIRECTIVES • DO NOT RETURN
+        </div>
+    </div>
+
+    <!-- ARTIFICIAL 5-SECOND UNKIPPABLE FULLSCREEN DELAY MODAL -->
+    <div id="loading-modal">
+        <div class="spinner-ring"></div>
+        <div class="modal-warning-title">[SYSTEM DELAY IN PROGRESS]</div>
+        <div id="modal-status-text" class="modal-status-text">PARSING CIPHER BLOCKS...</div>
+        <div class="modal-progress-track">
+            <div id="modal-progress-fill" class="modal-progress-fill"></div>
+        </div>
+        <p style="font-size: 10px; color: #777777; margin-top: 18px; max-width: 320px;">
+            SYSTEM BUFFER LOCKED. DO NOT CLOSE OR REFRESH BROWSER WINDOW DURING IRREVERSIBLE CRYPTOGRAPHIC PASS.
+        </p>
+    </div>
+
+    <!-- HOSTILE MECHANICAL JAVASCRIPT LOGIC -->
+    <script>
+        (function() {
+            'use strict';
+
+            // Element References
+            const payloadInput = document.getElementById('payload-input');
+            const algorithmSelect = document.getElementById('transform-algorithm');
+            const fakeTrapBtn = document.getElementById('fake-trap-btn');
+            const realExecBtn = document.getElementById('real-exec-btn');
+            const loadingModal = document.getElementById('loading-modal');
+            const modalStatusText = document.getElementById('modal-status-text');
+            const modalProgressFill = document.getElementById('modal-progress-fill');
+
+            // Internal safety flag to prevent native alerts from triggering the blur self-destruct
+            let isExecutingInternalAlert = false;
+            let isBusyProcessing = false;
+
+            // 1. DISALLOW STATE RETENTION, AUTOFILL, AND CACHING
+            payloadInput.value = '';
+            payloadInput.setAttribute('autocomplete', 'new-password');
+            payloadInput.setAttribute('data-lpignore', 'true');
+
+            // 2. TOTAL FOCUS & SESSION ERASURE LISTENERS ('blur', 'visibilitychange', 'beforeunload')
+            function triggerFocusLossDestruction(eventType) {
+                if (isExecutingInternalAlert || isBusyProcessing) {
+                    return;
+                }
+
+                if (payloadInput.value.length > 0) {
+                    payloadInput.value = '';
+                    isExecutingInternalAlert = true;
+                    window.alert("[SECURITY PROTOCOL ENGAGED - FOCUS VIOLATION]: " +
+                        "Window focus was lost (" + eventType + "). In accordance with strict ephemeral security policy, " +
+                        "all volatile buffer memory has been zeroed out to prevent credential harvesting. Returning to blank state.");
+                    isExecutingInternalAlert = false;
+                }
+            }
+
+            // Window blur listener
+            window.addEventListener('blur', function() {
+                triggerFocusLossDestruction('WINDOW_BLUR_DETECTED');
+            });
+
+            // Tab switch / DevTools visibilitychange listener
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) {
+                    triggerFocusLossDestruction('TAB_SWITCH_OR_MINIMIZE');
+                }
+            });
+
+            // Beforeunload warning
+            window.addEventListener('beforeunload', function(e) {
+                if (payloadInput.value.length > 0) {
+                    e.preventDefault();
+                    e.returnValue = "Warning: Leaving this page deletes your progress forever.";
+                    return e.returnValue;
+                }
+            });
+
+            // 3. ACCIDENTAL RESET TRAP
+            // The primary, bright, highly visible button wipes out everything and screams at the user
+            fakeTrapBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                payloadInput.value = '';
+                isExecutingInternalAlert = true;
+                window.alert("[FATAL EXCEPTION - ACCIDENTAL PURGE]: " +
+                    "You activated the primary reset sequence. All text area contents have been purged from volatile RAM.\n\n" +
+                    "Notice: You must re-type your payload from scratch.");
+                isExecutingInternalAlert = false;
+            });
+
+            // Real button jumps 5-10px away when hovered to prevent rapid clicking
+            realExecBtn.addEventListener('mouseenter', function() {
+                const offsetX = (Math.random() > 0.5 ? 1 : -1) * (Math.floor(Math.random() * 6) + 5); // 5 to 10px
+                const offsetY = (Math.random() > 0.5 ? 1 : -1) * (Math.floor(Math.random() * 6) + 5); // 5 to 10px
+                realExecBtn.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+            });
+
+            // 4. TRANSFORMATION CORE FUNCTIONS
+            function executeTransformation(text, algo) {
+                switch(algo) {
+                    case 'rot13':
+                        return text.replace(/[a-zA-Z]/g, function(c) {
+                            const base = c <= 'Z' ? 65 : 97;
+                            return String.fromCharCode(((c.charCodeAt(0) - base + 13) % 26) + base);
+                        });
+                    case 'binary':
+                        return text.split('').map(function(c) {
+                            return c.charCodeAt(0).toString(2).padStart(8, '0');
+                        }).join(' ');
+                    case 'base64':
+                        try {
+                            return btoa(unescape(encodeURIComponent(text)));
+                        } catch(e) {
+                            return 'ERROR_CODEC_FAILURE';
+                        }
+                    case 'inverse':
+                        return text.split('').map(function(c, i) {
+                            return (i % 2 === 0) ? c.toLowerCase() : c.toUpperCase();
+                        }).join('');
+                    case 'reverse':
+                        return text.split('').reverse().join('');
+                    case 'strip':
+                        return text.replace(/[^a-zA-Z0-9]/g, '');
+                    default:
+                        return text.toUpperCase();
+                }
+            }
+
+            // 5. HOSTILE POPUP BLOCK (7 TO 10 REPETITIONS)
+            // Stark, cold, high-anxiety system and legal warnings
+            const SYSTEM_WARNING_TEMPLATES = [
+                "Confirming deep overwrite of volatile system buffer. Click OK to advance state.",
+                "Verification of non-repudiation cryptographic certificate. Click OK to advance state.",
+                "Mandatory acknowledgment of destructive memory reclamation protocol. Click OK to advance state.",
+                "Under Section 104-B, proceeding waives all statutory rights to audit trail reconstruction. Click OK to advance state.",
+                "Caching mechanisms disabled by hypervisor. Risk of irrecoverable bit-rot accepted. Click OK to advance state.",
+                "Host system resources pinned to high-priority lock. System instability may occur. Click OK to advance state.",
+                "Validating zero-knowledge ephemeral proof against root revocation authority. Click OK to advance state.",
+                "Pseudorandom sequence entropy threshold verified. Proceeding with single-use pipeline. Click OK to advance state.",
+                "Terminal authorization granted. Execution phase will consume execution slot irrevocably. Click OK to advance state.",
+                "Final authorization handshake completed. No recovery vectors remain. Click OK to proceed."
+            ];
+
+            // 6. FINAL FUNCTIONAL ACTION TRIGGER
+            realExecBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const textToProcess = payloadInput.value;
+                if (!textToProcess || textToProcess.trim().length === 0) {
+                    isExecutingInternalAlert = true;
+                    window.alert("[VALIDATION ERROR]: Cannot execute on zero-length payload. Textarea is empty.");
+                    isExecutingInternalAlert = false;
+                    return;
+                }
+
+                // Random number between 7 and 10 sequential alerts
+                const popupCount = Math.floor(Math.random() * 4) + 7; // exactly 7, 8, 9, or 10
+
+                isExecutingInternalAlert = true;
+                for (let i = 1; i <= popupCount; i++) {
+                    const messageTemplate = SYSTEM_WARNING_TEMPLATES[(i - 1) % SYSTEM_WARNING_TEMPLATES.length];
+                    window.alert(`[SYSTEM EXCEPTION ${i}/${popupCount}]: ${messageTemplate}`);
+                }
+                isExecutingInternalAlert = false;
+
+                // 7. SURVIVED POPUPS -> 5-SECOND UNKIPPABLE DELAY
+                isBusyProcessing = true;
+                loadingModal.style.display = 'flex';
+                modalProgressFill.style.width = '0%';
+
+                const delayPhrases = [
+                    "PARSING CIPHER BLOCKS...",
+                    "DEALLOCATING MEMORY TABLES...",
+                    "COMPUTING IRREVERSIBLE ENTROPY CHECKSUM...",
+                    "SYNCHRONIZING ATOMIC REGISTER STATES...",
+                    "PURGING RECOVERY STACK FRAMES..."
+                ];
+
+                let elapsedSeconds = 0;
+                modalStatusText.textContent = delayPhrases[0];
+
+                const intervalId = setInterval(function() {
+                    elapsedSeconds++;
+                    const progressPercent = Math.min(elapsedSeconds * 20, 100);
+                    modalProgressFill.style.width = progressPercent + '%';
+
+                    if (elapsedSeconds < delayPhrases.length) {
+                        modalStatusText.textContent = delayPhrases[elapsedSeconds];
+                    }
+
+                    if (elapsedSeconds >= 5) {
+                        clearInterval(intervalId);
+                        loadingModal.style.display = 'none';
+                        isBusyProcessing = false;
+
+                        // Calculate final result
+                        const selectedAlgo = algorithmSelect.value;
+                        const finalResult = executeTransformation(textToProcess, selectedAlgo);
+
+                        // Deliver result strictly via final native alert box
+                        isExecutingInternalAlert = true;
+                        window.alert(
+                            "[COMPLETION NOTICE]: Transformation executed successfully.\n\n" +
+                            "--------------------------------------------------\n" +
+                            "OUTPUT PAYLOAD:\n" +
+                            finalResult + "\n" +
+                            "--------------------------------------------------\n\n" +
+                            "CRITICAL WARNING: This alert is your sole opportunity to capture output. " +
+                            "All tool states and input fields will now be irrevocably zeroed out."
+                        );
+                        isExecutingInternalAlert = false;
+
+                        // Immediately clear the tool's inputs so they cannot repeat the operation
+                        payloadInput.value = '';
+                        algorithmSelect.selectedIndex = 0;
+                        realExecBtn.style.transform = 'translate(0px, 0px)';
+                    }
+                }, 1000);
+            });
+
+        })();
+    </script>
+</body>
+</html>
